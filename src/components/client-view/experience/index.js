@@ -32,6 +32,7 @@ export default function ClientExperienceAndEducationView({
                     className={`${
                       index === 1 ? "text-green-main" : "text-[#000]"
                     }`}
+                    key={index}
                   >
                     {item}{" "}
                   </span>
@@ -44,8 +45,8 @@ export default function ClientExperienceAndEducationView({
               <motion.div className="container ">
                 <Timeline position="right" >
                   {experienceData && experienceData.length
-                    ? experienceData.map((experienceItem) => (
-                        <TimelineItem >
+                    ? experienceData.map((experienceItem, index) => (
+                        <TimelineItem key={index} >
                           <TimelineSeparator className="">
                             <TimelineDot color="grey" variant="filled" className="border border-green-main" />
                             <TimelineConnector className="bg-green-main border border-green-main" />
@@ -84,6 +85,7 @@ export default function ClientExperienceAndEducationView({
                     className={`${
                       index === 1 ? "text-green-main" : "text-[#000]"
                     }`}
+                    key={index}
                   >
                     {item}{" "}
                   </span>
@@ -96,8 +98,8 @@ export default function ClientExperienceAndEducationView({
               <motion.div className="container">
                 <Timeline position="right">
                   {educationData && educationData.length
-                    ? educationData.map((educationItem) => (
-                        <TimelineItem>
+                    ? educationData.map((educationItem, index) => (
+                        <TimelineItem key={index}>
                           <TimelineSeparator>
                             <TimelineDot className="bg-green-main" />
                             <TimelineConnector className="bg-green-main" />

@@ -87,6 +87,7 @@ export default function ClientHomeView({ data }) {
                     .split(" ")
                     .map((item, index) => (
                       <span
+                      key={index}
                         className={`${
                           index === 2 || index === 3
                             ? "text-green-main"
