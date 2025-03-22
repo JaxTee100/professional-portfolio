@@ -81,7 +81,7 @@ export default function ClientHomeView({ data }) {
           variants={setVariants}
         >
           <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <h1 className="mb-4 text-center lg:text-left text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal tracking-tight ">
+            <h1 className="mb-4  w-full text-center lg:text-left text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal tracking-tight ">
               {data && data.length
                 ? data[0]?.heading
                     .split(" ")
@@ -102,7 +102,7 @@ export default function ClientHomeView({ data }) {
             <p className="text-[#000] text-center lg:text-left lg:text-lg mt-4 mb-8 font-bold leading-loose">
               {data && data.length ? data[0]?.summary : null}
             </p>
-            <motion.div className="flex gap-3 cursor-pointer">
+            <motion.div className="flex gap-3 cursor-pointer justify-center lg:justify-start w-full">
               {socialIcons.map((item) => (
                 <motion.div
                   key={item.id}

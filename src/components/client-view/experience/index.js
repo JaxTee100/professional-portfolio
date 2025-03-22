@@ -19,18 +19,18 @@ export default function ClientExperienceAndEducationView({
 
   return (
     <div
-      className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto pt-16 font-mono"
+      className=" max-w-screen-xl mt-[200px] mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto pt-16 font-mono"
       id="experience"
     >
       <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
         <div className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6 sm:py-16"}>
+          <AnimationWrapper className={"py-6"}>
             <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-              <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+              <h1 className="leading-[70px] lg:mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                 {"My Experience".split(" ").map((item, index) => (
                   <span
                     className={`${
-                      index === 1 ? "text-green-main" : "text-[#000]"
+                      index === 1 ? "text-blue-main" : "text-[#000]"
                     }`}
                     key={index}
                   >
@@ -48,11 +48,11 @@ export default function ClientExperienceAndEducationView({
                     ? experienceData.map((experienceItem, index) => (
                         <TimelineItem key={index} >
                           <TimelineSeparator className="">
-                            <TimelineDot color="grey" variant="filled" className="border border-green-main" />
-                            <TimelineConnector className="bg-green-main border border-green-main" />
+                            <TimelineDot color="grey" variant="filled" className="border border-blue-main" />
+                            <TimelineConnector className="bg-blue-main border border-blue-main" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                            <div className="border-[2px] p-4 rounded-[8px] border-blue-main mt-[14px] ml-[16px]">
                               <p className="font-bold">
                                 {experienceItem.duration}
                               </p>
@@ -63,9 +63,7 @@ export default function ClientExperienceAndEducationView({
                               <p className="font-extrabold mt-2">
                                 {experienceItem.position}
                               </p>
-                              <p className="font-extralight mt-2">
-                                {experienceItem.jobprofile}
-                              </p>
+                              
                             </div>
                           </TimelineContent>
                         </TimelineItem>
@@ -77,13 +75,13 @@ export default function ClientExperienceAndEducationView({
           </AnimationWrapper>
         </div>
         <div className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6 sm:py-16"}>
+          <AnimationWrapper className={"py-6 "}>
             <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
               <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
                 {"My Education".split(" ").map((item, index) => (
                   <span
                     className={`${
-                      index === 1 ? "text-green-main" : "text-[#000]"
+                      index === 1 ? "text-blue-main" : "text-[#000]"
                     }`}
                     key={index}
                   >
@@ -101,11 +99,11 @@ export default function ClientExperienceAndEducationView({
                     ? educationData.map((educationItem, index) => (
                         <TimelineItem key={index}>
                           <TimelineSeparator>
-                            <TimelineDot className="bg-green-main" />
-                            <TimelineConnector className="bg-green-main" />
+                            <TimelineDot className="bg-blue-main" />
+                            <TimelineConnector className="bg-blue-main" />
                           </TimelineSeparator>
                           <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-green-main mt-[14px] ml-[16px]">
+                            <div className="border-[2px] p-4 rounded-[8px] border-blue-main mt-[14px] ml-[16px]">
                               <p className="font-bold">
                                 {educationItem.year}
                               </p>

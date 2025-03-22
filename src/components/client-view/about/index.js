@@ -88,7 +88,7 @@ export default function ClientAboutView({ data }) {
       </div>
       <AnimationWrapper className={"pt-6"}>
         <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-          <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
+          <h1 className="leading-[30px] mb-4 text-xl lg:text-4xl xl:text-5xl font-bold">
             {headingText.split(" ").map((item, index) => (
               <span
                 className={`${index === 6 ? "text-blue-main" : "text-[#000]"} font-mono`} key={index}
@@ -97,7 +97,7 @@ export default function ClientAboutView({ data }) {
               </span>
             ))}
           </h1>
-          <p className="text-[#000] mt-4 mb-8 font-bold leading-loose pl-4 border-l-2 border-blue-main font-mono">{data?.aboutme}</p>
+          <p className="w-full text-[#000] mt-4 mb-8 font-bold leading-loose pl-4 sm:border-b text-center lg:border-l-2 lg:border-b-0 border-blue-main font-mono">{data?.aboutme}</p>
         </div>
       </AnimationWrapper>
       <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
@@ -124,7 +124,7 @@ export default function ClientAboutView({ data }) {
                 variants={skillItemVariant}
                 key={index}
               >
-                <button className="whitespace-nowrap text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-blue-main bg-[#fff] text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-blue-main hover:bg-slate-100 hover:scale-110 transition-all outline-none">
+                <button className="whitespace-nowrap text-lg  text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-blue-main bg-[#fff] text-[#000] font-semibold rounded-lg  tracking-widest hover:shadow-blue-main hover:bg-slate-100 hover:scale-110 transition-all outline-none">
                   {skill}
                 </button>
               </motion.div>

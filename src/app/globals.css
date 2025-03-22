@@ -6,7 +6,7 @@
   --color-black-900: #000000;
   --color-black-500: "#4F5665";
   --color-black-600: "#0B132A";
-  --color-blue-main: #507dc7;
+  --color-blue-main: #042d65;
   --color-green-500: #2FAB73;
   --color-white-500: #fff;
 
@@ -131,7 +131,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: green;
+  background: black;
   -webkit-border-radius: 1ex;
 }
 
