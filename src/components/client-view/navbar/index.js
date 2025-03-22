@@ -18,11 +18,11 @@ const menuItems = [
   },
   {
     id: "project",
-    label: "projects",
+    label: "Projects",
   },
   {
-    id: "contact",
-    label: "Contact",
+    id: "articles",
+    label: "Articles",
   },
 ];
 
@@ -34,13 +34,13 @@ function CreateMenus({ activeLink, getMenuItems, setActiveLink }) {
       to={item.id}
       spy={true}
       smooth={true}
-      duration={1000}
+      duration={2000}
       onSetActive={() => setActiveLink(item.id)}
-      className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative
+      className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-lg font-bold
     ${
       activeLink === item.id
-        ? "text-green-main animation-active shadow-green-main"
-        : "text-[#000] font-bold hover:text-green-main"
+        ? "text-blue-main animation-active shadow-blue-main"
+        : "text-[#000]  hover:text-blue-main"
     }
     `}
     >
@@ -68,8 +68,8 @@ export default function Navbar() {
       >
         <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
           <div className="col-start-1 col-end-2 flex items-center">
-            <div className="cursor-pointer flex gap-2 font-bold items-center text-[20px] text-green-main">
-              <div className="w-[40px] h-[40px] flex justify-center items-center p-3 rounded-[8px] border-green-main bg-green-main">
+            <div className="cursor-pointer flex gap-2 font-bold items-center text-[20px] text-blue-main">
+              <div className="w-[40px] h-[40px] flex justify-center items-center p-3 rounded-[8px] border-blue-main bg-blue-main">
                 <span className="text-[#fff] text-[25px] font-bold">P</span>
               </div>
               ortfolio
@@ -91,7 +91,7 @@ export default function Navbar() {
                   smooth: true,
                 })
               }
-              className="py-3 px-6 border-3 bg-[#fff] border-green-main text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-md transition-all outline-none"
+              className="py-3 px-6 border-3 bg-[#fff] border-blue-main text-[#000] font-semibold rounded-lg text-xl tracking-widest hover:shadow-green-md transition-all outline-none cursor-pointer hover:bg-slate-200"
             >
               Contact Me
             </button>

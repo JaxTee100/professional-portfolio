@@ -6,7 +6,7 @@
   --color-black-900: #000000;
   --color-black-500: "#4F5665";
   --color-black-600: "#0B132A";
-  --color-green-main: #082047;
+  --color-blue-main: #507dc7;
   --color-green-500: #2FAB73;
   --color-white-500: #fff;
 
@@ -21,15 +21,13 @@ html {
 body {
   background: "bg-white-500";
 }
-p {
-  color:  #000000
-}
+
 .animation-hover:after {
   background: none repeat scroll 0 0 transparent;
   content: "";
   height: 2px;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
-  @apply w-0 bg-green-main left-1/2 block bottom-0 absolute;
+  @apply w-0 bg-blue-main left-1/2 block bottom-0 absolute;
 }
 .animation-active:after {
   @apply left-0 w-full;

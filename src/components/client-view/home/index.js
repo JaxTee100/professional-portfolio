@@ -10,7 +10,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import Image from "next/image";
-import aiImage from "../../../assets/ai-image.png";
+import aiImage from "../../../assets/option3.png";
 
 function variants() {
   return {
@@ -34,7 +34,7 @@ const socialIcons = [
     id: "facebook",
     icon: (
       <FaFacebookF
-        color="green-main"
+        color="blue-main"
         className="w-[40px] h-[40px] "
       />
     ),
@@ -42,14 +42,14 @@ const socialIcons = [
   {
     id: "twitter",
     icon: (
-      <FaTwitter color="green-main" className="w-[40px] h-[40px] " />
+      <FaTwitter color="blue-main" className="w-[40px] h-[40px] " />
     ),
   },
   {
     id: "linkedin",
     icon: (
       <FaLinkedinIn
-        color="green-main"
+        color="blue-main"
         className="w-[40px] h-[40px] "
       />
     ),
@@ -58,7 +58,7 @@ const socialIcons = [
     id: "instagram",
     icon: (
       <FaInstagram
-        color="green-main"
+        color="blue-main"
         className="w-[40px] h-[40px] "
       />
     ),
@@ -72,7 +72,7 @@ export default function ClientHomeView({ data }) {
   const containerRef = useRef(null);
 
   return (
-    <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto" id="home">
+    <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto font-mono" id="home">
       <AnimationWrapper>
         <motion.div
           className={
@@ -81,16 +81,16 @@ export default function ClientHomeView({ data }) {
           variants={setVariants}
         >
           <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <h1 className="mb-4 text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal">
+            <h1 className="mb-4 text-center lg:text-left text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal tracking-tight ">
               {data && data.length
                 ? data[0]?.heading
                     .split(" ")
                     .map((item, index) => (
                       <span
                       key={index}
-                        className={`${
+                        className={` ${
                           index === 2 || index === 3
-                            ? "text-green-main"
+                            ? "text-blue-main"
                             : "text-[#000]"
                         }`}
                       >
@@ -99,14 +99,14 @@ export default function ClientHomeView({ data }) {
                     ))
                 : null}
             </h1>
-            <p className="text-[#000] mt-4 mb-8 font-bold">
+            <p className="text-[#000] text-center lg:text-left lg:text-lg mt-4 mb-8 font-bold leading-loose">
               {data && data.length ? data[0]?.summary : null}
             </p>
             <motion.div className="flex gap-3 cursor-pointer">
               {socialIcons.map((item) => (
                 <motion.div
                   key={item.id}
-                  className="text-green-main"
+                  className="text-blue-main"
                   initial={{ scale: 0 }}
                   animate={{ rotate: 360, scale: 1 }}
                   transition={{
@@ -127,7 +127,7 @@ export default function ClientHomeView({ data }) {
             <motion.div
               drag
               dragConstraints={containerRef}
-              className="w-[400px] h-[400px] relative bg-green-main"
+              className="w-[400px] h-[400px] relative bg-blue-main"
             >
               <div className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#000000] absolute"></div>
               <Image
