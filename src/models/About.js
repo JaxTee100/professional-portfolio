@@ -6,7 +6,7 @@ const AboutSchema = new mongoose.Schema(
     noofprojects: String,
     yearofexperience: String,
     noofclients: String,
-    skills: String,
+    skills: [String],
   },
   { timestamps: true }
 );

@@ -2,52 +2,51 @@
 
 import { useEffect, useState } from "react";
 import { Link as LinkScroll, scroller } from "react-scroll";
+import { motion } from "framer-motion"; // Make sure framer-motion is installed!
 
 const menuItems = [
-  {
-    id: "home",
-    label: "Home",
-  },
-  {
-    id: "about",
-    label: "About",
-  },
-  {
-    id: "experience",
-    label: "Experience",
-  },
-  {
-    id: "project",
-    label: "Projects",
-  },
-  {
-    id: "articles",
-    label: "Articles",
-  },
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "experience", label: "Experience" },
+  { id: "project", label: "Projects" },
 ];
 
 function CreateMenus({ activeLink, getMenuItems, setActiveLink }) {
   return getMenuItems.map((item) => (
-    <LinkScroll
+    <motion.div
       key={item.id}
-      activeClass="active"
-      to={item.id}
-      spy={true}
-      smooth={true}
-      duration={2000}
-      onSetActive={() => setActiveLink(item.id)}
-      className={`px-4 py-2 mx-2 cursor-pointer animation-hover inline-block relative text-lg font-bold
-    ${
-      activeLink === item.id
-        ? "text-blue-main animation-active shadow-blue-main"
-        : "text-[#000]  hover:text-blue-main"
-    }
-    `}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      className="relative inline-block"
     >
-      {item.label}
-    </LinkScroll>
+      <LinkScroll
+        activeClass="active"
+        to={item.id}
+        spy={true}
+        smooth={true}
+        duration={2000}
+        onSetActive={() => setActiveLink(item.id)}
+        className={`px-4 py-2 mx-2 cursor-pointer text-lg font-bold text-[#000] transition-all 
+          ${activeLink === item.id ? "text-blue-main" : "hover:text-blue-main"}
+        `}
+      >
+        {item.label}
+        {/* Animated underline */}
+        <motion.span
+          layoutId="underline"
+          className={`absolute left-0 -bottom-1 h-[2px] rounded-full bg-blue-main transition-all`}
+          initial={{ width: 0 }}
+          animate={{
+            width: activeLink === item.id ? "100%" : "0%",
+            transition: { duration: 0.3, ease: "easeInOut" },
+          }}
+        />
+      </LinkScroll>
+    </motion.div>
   ));
 }
+
+
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState("home");
@@ -99,7 +98,7 @@ export default function Navbar() {
         </nav>
       </header>
       <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t">
-        <div className="bg-white-500 sm:px-3">
+        <div className="bg-white-500 sm:px-3 ">
           <ul className="overflow-x-auto flex w-full justify-between items-center text-[#000]">
             <CreateMenus
               setActiveLink={setActiveLink}

@@ -28,12 +28,11 @@ const skillItemVariant = {
   visible: {
     y: 0,
     opacity: 1,
+    transition: { duration: 0.5 },
   },
 };
 
 export default function ClientAboutView({ data }) {
-  console.log("data", data);
-
   const setVariants = useMemo(() => variants(), []);
 
   const aboutDataInfo = [
@@ -54,77 +53,82 @@ export default function ClientAboutView({ data }) {
   const headingText = "Why Hire Me For Your Next Project ?";
 
   return (
-    <div className="max-w-screen-xl mt-24 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto  lg:pt-20" id="about">
+    <div
+      className="max-w-screen-xl mt-24 mb-10 px-6 sm:px-8 lg:px-16 mx-auto"
+      id="about"
+    >
+      {/* Stats Section */}
       <div className="w-full flex">
-        <AnimationWrapper className="rounded-lg w-full grid-flow-row grid grid-cols-1 sm:grid-cols-3 py-9 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-blue-main bg-ehite-500 z-10">
+        <AnimationWrapper className="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 bg-white">
           {aboutDataInfo.map((infoItem, index) => (
             <motion.div
-              className={`flex items-center justify-start font-mono text-blue-main
-                ${
-                  index === 0
-                    ? "sm:justify-start"
-                    : index === 1
-                    ? "sm:justify-center"
-                    : "sm:justify-end"
-                } py-4 sm:py-6 w-8/12 px-4 sm:w-auto mx-auto sm:mx-0
-                `}
+              className="flex flex-col items-center justify-center p-6 rounded-xl bg-gray-50 hover:bg-blue-50 shadow-md transition-all duration-300"
               key={index}
               custom={{ duration: 2 + index }}
               variants={setVariants}
             >
-              <div className="flex m-0 w-40 sm:w-auto">
-                <div className="flex flex-col">
-                  <p className="text-[50px] text-black font-bold">
-                    {infoItem.value}+
-                  </p>
-                  <p className="text-[25px] font-bold text-blue-main">
-                    {infoItem.label}
-                  </p>
-                </div>
-              </div>
+              <p className="text-4xl lg:text-5xl text-black font-extrabold">
+                {infoItem.value}+
+              </p>
+              <p className="text-lg lg:text-2xl font-bold text-blue-600 mt-2">
+                {infoItem.label}
+              </p>
             </motion.div>
           ))}
         </AnimationWrapper>
       </div>
-      <AnimationWrapper className={"pt-6"}>
-        <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-          <h1 className="leading-[30px] mb-4 text-xl lg:text-4xl xl:text-5xl font-bold">
+
+      {/* Heading Section */}
+      <AnimationWrapper className="pt-12">
+        <div className="flex flex-col justify-center items-center text-center px-4">
+          <h1 className="mb-6 text-3xl lg:text-5xl font-extrabold leading-tight">
             {headingText.split(" ").map((item, index) => (
               <span
-                className={`${index === 6 ? "text-blue-main" : "text-[#000]"} font-mono`} key={index}
+                key={index}
+                className={`${
+                  index === 6 ? "text-blue-600" : "text-black"
+                } font-mono`}
               >
                 {item}{" "}
               </span>
             ))}
           </h1>
-          <p className="w-full text-[#000] mt-4 mb-8 font-bold leading-loose pl-4 sm:border-b text-center lg:border-l-2 lg:border-b-0 border-blue-main font-mono">{data?.aboutme}</p>
+          <p className="max-w-3xl text-gray-600 text-md lg:text-lg mt-4 leading-relaxed border-l-4 pl-6 border-blue-600 font-mono">
+            {data?.aboutme}
+          </p>
         </div>
       </AnimationWrapper>
-      <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
-        <AnimationWrapper className="flex w-full">
-          <motion.div variants={setVariants} className="h-full w-full p-4">
+
+      {/* About Image and Skills */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 mt-16">
+        {/* About Image */}
+        <AnimationWrapper>
+          <motion.div variants={setVariants} className="w-full">
             <Image
               src={aboutMeImage}
               alt="About Me"
               layout="responsive"
               height={414}
               width={508}
+              className="rounded-xl shadow-lg"
               quality={100}
             />
           </motion.div>
         </AnimationWrapper>
-        <AnimationWrapper className={"flex items-center w-full p-4"}>
+
+        {/* Skills Grid */}
+        <AnimationWrapper className="flex items-center">
           <motion.div
             variants={setVariants}
-            className="grid gap-4 grid-cols-2 lg:grid-cols-3 h-full max-h-[200px] w-full"
+            className="grid gap-4 grid-cols-2 lg:grid-cols-3 w-full"
           >
             {data?.skills.split(",").map((skill, index) => (
               <motion.div
-                className="w-full flex justify-center items-center"
+                className="flex justify-center"
                 variants={skillItemVariant}
                 key={index}
               >
-                <button className="whitespace-nowrap text-lg  text-ellipsis overflow-hidden py-3 w-[160px] px-6 border-[2px] border-blue-main bg-[#fff] text-[#000] font-semibold rounded-lg  tracking-widest hover:shadow-blue-main hover:bg-slate-100 hover:scale-110 transition-all outline-none">
+                <button className="w-[140px] text-center py-2 px-4 bg-white border-2 border-blue-600 text-blue-600 font-semibold rounded-lg hover:bg-blue-600 hover:text-white hover:scale-105 transition-all duration-300">
                   {skill}
                 </button>
               </motion.div>

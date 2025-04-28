@@ -30,114 +30,86 @@ function variants() {
 }
 
 const socialIcons = [
-  {
-    id: "facebook",
-    icon: (
-      <FaFacebookF
-        color="blue-main"
-        className="w-[40px] h-[40px] "
-      />
-    ),
-  },
-  {
-    id: "twitter",
-    icon: (
-      <FaTwitter color="blue-main" className="w-[40px] h-[40px] " />
-    ),
-  },
-  {
-    id: "linkedin",
-    icon: (
-      <FaLinkedinIn
-        color="blue-main"
-        className="w-[40px] h-[40px] "
-      />
-    ),
-  },
-  {
-    id: "instagram",
-    icon: (
-      <FaInstagram
-        color="blue-main"
-        className="w-[40px] h-[40px] "
-      />
-    ),
-  },
+  { id: "facebook", icon: <FaFacebookF className="w-6 h-6" /> },
+  { id: "twitter", icon: <FaTwitter className="w-6 h-6" /> },
+  { id: "linkedin", icon: <FaLinkedinIn className="w-6 h-6" /> },
+  { id: "instagram", icon: <FaInstagram className="w-6 h-6" /> },
 ];
 
 export default function ClientHomeView({ data }) {
-  console.log(data, "ClientHomeView");
-
   const setVariants = useMemo(() => variants(), []);
   const containerRef = useRef(null);
 
   return (
-    <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto font-mono" id="home">
+    <div
+      className="max-w-screen-xl mt-24 px-6 md:px-12 xl:px-20 mx-auto font-sans"
+      id="home"
+    >
       <AnimationWrapper>
         <motion.div
-          className={
-            "grid grid-flow-row sm:grid-flow-col grid-rows-2 md:grid-rows-1 sm:grid-cols-2 gap-8 py-6 sm:py-16"
-          }
+          className="grid md:grid-cols-2 items-center gap-12"
           variants={setVariants}
         >
-          <div className="flex flex-col justify-center items-start row-start-2 sm:row-start-1">
-            <h1 className="mb-4  w-full text-center lg:text-left text-3xl lg:text-4xl xl:text-6xl font-medium leading-normal tracking-tight ">
+          {/* Left Section */}
+          <div className="flex flex-col justify-center items-start">
+            <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold leading-tight text-black">
               {data && data.length
-                ? data[0]?.heading
-                    .split(" ")
-                    .map((item, index) => (
-                      <span
+                ? data[0]?.heading.split(" ").map((item, index) => (
+                    <span
                       key={index}
-                        className={` ${
-                          index === 2 || index === 3
-                            ? "text-blue-main"
-                            : "text-[#000]"
-                        }`}
-                      >
-                        {item}{" "}
-                      </span>
-                    ))
+                      className={`${
+                        index === 2 || index === 3
+                          ? "text-blue-700"
+                          : "text-black"
+                      }`}
+                    >
+                      {item}{" "}
+                    </span>
+                  ))
                 : null}
             </h1>
-            <p className="text-[#000] text-center lg:text-left lg:text-lg mt-4 mb-8 font-bold leading-loose">
+
+            <p className="w-full text-[#333] text-base md:text-lg leading-relaxed mt-6 mb-8 text-justify">
               {data && data.length ? data[0]?.summary : null}
             </p>
-            <motion.div className="flex gap-3 cursor-pointer justify-center lg:justify-start w-full">
+
+            {/* Social Icons */}
+            <div className="flex gap-6">
               {socialIcons.map((item) => (
                 <motion.div
                   key={item.id}
-                  className="text-blue-main"
                   initial={{ scale: 0 }}
                   animate={{ rotate: 360, scale: 1 }}
                   transition={{
                     type: "spring",
                     damping: 20,
                     stiffness: 80,
-                    duration: 4,
+                    duration: 2,
                   }}
                   whileHover={{ scale: 1.2, rotate: 360 }}
                   whileTap={{ scale: 0.8, rotate: 0, borderRadius: "100%" }}
+                  className="p-3 rounded-full bg-blue-100 text-blue-700 hover:bg-blue-700 hover:text-white transition-colors"
                 >
                   {item.icon}
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </div>
-          <motion.div ref={containerRef} className="flex w-full justify-end">
+
+          {/* Right Section */}
+          <motion.div ref={containerRef} className="flex justify-center md:justify-end">
             <motion.div
               drag
               dragConstraints={containerRef}
-              className="w-[400px] h-[400px] relative bg-blue-main"
+              className="relative w-[300px] h-[300px] md:w-[400px] md:h-[400px] bg-blue-700 rounded-lg overflow-hidden"
             >
-              <div className="w-[400px] h-[400px] top-[40px] left-[-30px] rounded-lg border-[6px] border-[#000000] absolute"></div>
+              <div className="absolute w-full h-full top-4 left-4 rounded-lg border-4 border-black"></div>
               <Image
                 src={aiImage}
                 alt="Profile Picture"
-                layout="responsive"
-                quality={100}
-                height={300}
-                width={300}
-                className="absolute top-[-15px]"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
               />
             </motion.div>
           </motion.div>

@@ -1,128 +1,101 @@
 "use client";
 
-import {
-  Timeline,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  TimelineItem,
-  TimelineSeparator,
-} from "@mui/lab";
 import AnimationWrapper from "../animation-wrapper";
 import { motion } from "framer-motion";
 
-export default function ClientExperienceAndEducationView({
-  educationData,
-  experienceData,
-}) {
-  console.log(educationData, experienceData, "experienceData");
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.15, duration: 0.6, type: "spring" },
+  }),
+};
 
+export default function ClientExperienceAndEducationView({ educationData, experienceData }) {
   return (
     <div
-      className=" max-w-screen-xl mt-[200px] mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto pt-16 font-mono"
+      className="max-w-screen-xl mt-32 mb-16 px-6 sm:px-8 lg:px-16 mx-auto pt-16 font-mono"
       id="experience"
     >
-      <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8">
-        <div className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6"}>
-            <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-              <h1 className="leading-[70px] lg:mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-                {"My Experience".split(" ").map((item, index) => (
+      <div className="flex flex-col lg:flex-row gap-16 w-full">
+        
+        {/* Experience Section */}
+        <div className="flex-1 flex flex-col gap-8 min-w-0">
+          <AnimationWrapper>
+            <div className="flex flex-col items-center text-center">
+              <h1 className="text-4xl xl:text-5xl font-semibold leading-tight break-words">
+                {"My Experience".split(" ").map((word, idx) => (
                   <span
-                    className={`${
-                      index === 1 ? "text-blue-main" : "text-[#000]"
-                    }`}
-                    key={index}
+                    key={idx}
+                    className={`${idx === 1 ? "text-blue-main" : "text-black"}`}
                   >
-                    {item}{" "}
+                    {word}{" "}
                   </span>
                 ))}
               </h1>
             </div>
           </AnimationWrapper>
+
           <AnimationWrapper>
-            <div className="flex w-full">
-              <motion.div className="container ">
-                <Timeline position="right" >
-                  {experienceData && experienceData.length
-                    ? experienceData.map((experienceItem, index) => (
-                        <TimelineItem key={index} >
-                          <TimelineSeparator className="">
-                            <TimelineDot color="grey" variant="filled" className="border border-blue-main" />
-                            <TimelineConnector className="bg-blue-main border border-blue-main" />
-                          </TimelineSeparator>
-                          <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-blue-main mt-[14px] ml-[16px]">
-                              <p className="font-bold">
-                                {experienceItem.duration}
-                              </p>
-                              <h3 className="font-extrabold mt-2">
-                                {experienceItem.company},{" "}
-                                {experienceItem.location}
-                              </h3>
-                              <p className="font-extrabold mt-2">
-                                {experienceItem.position}
-                              </p>
-                              
-                            </div>
-                          </TimelineContent>
-                        </TimelineItem>
-                      ))
-                    : null}
-                </Timeline>
-              </motion.div>
-            </div>
+            <motion.div className="flex flex-col gap-8 w-full">
+              {experienceData?.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  className="p-6 border border-gray-200 rounded-xl shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300 w-full"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={itemVariants}
+                  custom={idx}
+                >
+                  <p className="text-blue-600 font-semibold text-sm">{item.duration}</p>
+                  <h3 className="text-xl font-bold mt-2">{item.company}, {item.location}</h3>
+                  <p className="text-md font-medium mt-1 text-gray-700">{item.position}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </AnimationWrapper>
         </div>
-        <div className="flex flex-col gap-5">
-          <AnimationWrapper className={"py-6 "}>
-            <div className="flex flex-col justify-center items-center row-start-2 sm:row-start-1">
-              <h1 className="leading-[70px] mb-4 text-3xl lg:text-4xl xl:text-5xl font-medium">
-                {"My Education".split(" ").map((item, index) => (
+
+        {/* Education Section */}
+        <div className="flex-1 flex flex-col gap-8 min-w-0">
+          <AnimationWrapper>
+            <div className="flex flex-col items-center text-center">
+              <h1 className="text-4xl xl:text-5xl font-semibold leading-tight break-words">
+                {"My Education".split(" ").map((word, idx) => (
                   <span
-                    className={`${
-                      index === 1 ? "text-blue-main" : "text-[#000]"
-                    }`}
-                    key={index}
+                    key={idx}
+                    className={`${idx === 1 ? "text-blue-main" : "text-black"}`}
                   >
-                    {item}{" "}
+                    {word}{" "}
                   </span>
                 ))}
               </h1>
             </div>
           </AnimationWrapper>
+
           <AnimationWrapper>
-            <div className="flex w-full">
-              <motion.div className="container">
-                <Timeline position="right">
-                  {educationData && educationData.length
-                    ? educationData.map((educationItem, index) => (
-                        <TimelineItem key={index}>
-                          <TimelineSeparator>
-                            <TimelineDot className="bg-blue-main" />
-                            <TimelineConnector className="bg-blue-main" />
-                          </TimelineSeparator>
-                          <TimelineContent>
-                            <div className="border-[2px] p-4 rounded-[8px] border-blue-main mt-[14px] ml-[16px]">
-                              <p className="font-bold">
-                                {educationItem.year}
-                              </p>
-                              <h3 className="font-extrabold mt-2">
-                                {educationItem.college}
-                              </h3>
-                              <p className="font-extrabold mt-2">
-                                {educationItem.degree}
-                              </p>
-                            </div>
-                          </TimelineContent>
-                        </TimelineItem>
-                      ))
-                    : null}
-                </Timeline>
-              </motion.div>
-            </div>
+            <motion.div className="flex flex-col gap-8 w-full">
+              {educationData?.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  className="p-6 border border-gray-200 rounded-xl shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300 w-full"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={itemVariants}
+                  custom={idx}
+                >
+                  <p className="text-blue-600 font-semibold text-sm">{item.year}</p>
+                  <h3 className="text-xl font-bold mt-2">{item.college}</h3>
+                  <p className="text-md font-medium mt-1 text-gray-700">{item.degree}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </AnimationWrapper>
         </div>
+
       </div>
     </div>
   );
